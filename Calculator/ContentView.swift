@@ -9,35 +9,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    let calculatorButtons = [["7", "8", "9", "X"],
-                             ["4", "5", "6", "-"],
-                             ["1", "2", "3", "+"],
-                             ["0", ".", ".", "="]
+    let calculatorButtons: [[CalculatorButton]] = [
+        [.allClear, .negate, .percentage, .divide],
+        [.seven, .eight, .nine, .multiply],
+        [.four, .five, .six, .subtract],
+        [.one, .two, .three, .add],
+        [.zero, .decimal, .equals]
     ]
-    private let verticalSpacing: CGFloat = 12
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.black.edgesIgnoringSafeArea(.all)
-            VStack(spacing: verticalSpacing) {
+            VStack(spacing: CalculatorDimensions.verticalSpacing) {
+                HStack(spacing: 12) {
+                    Spacer()
+                    Text("43").font(.system(size: 72)).foregroundColor(.white).padding()
+                }
                 ForEach(calculatorButtons, id: \.self) {  row in
                     HStack(spacing: 12) {
                         ForEach(row, id: \.self) { button in
-                            Text(button)
+                            Text(button.title)
                                 .font(.system(size: 32))
-                                .frame(width: self.buttonWidth(),
-                                       height: self.buttonWidth())
+                                .frame(width: button.buttonWidth,
+                                       height: button.buttonHeight)
                                 .foregroundColor(.white)
-                                .background(Color.yellow)
-                            .cornerRadius(self.buttonWidth()/2)
+                                .background(button.backgroundColor)
+                            .cornerRadius(button.buttonHeight / 2)
                         }
                     }
                 }
             }.padding(.bottom)
         }
-    }
-    
-    private func buttonWidth() -> CGFloat {
-        return (UIScreen.main.bounds.width - 5 * verticalSpacing) / 4
     }
 }
 
