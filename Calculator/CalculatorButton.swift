@@ -11,6 +11,7 @@ import SwiftUI
 
 class CalculatorDimensions {
     static let verticalSpacing: CGFloat = 12
+    static let width: CGFloat = UIScreen.main.bounds.width
 }
 enum CalculatorButton {
     
@@ -58,9 +59,9 @@ enum CalculatorButton {
         case .subtract:
             return "-"
         case .multiply:
-            return "X"
+            return "*"
         case .divide:
-            return "÷"
+            return "/"
         case .equals:
             return "="
         case .allClear:
@@ -74,12 +75,12 @@ enum CalculatorButton {
     
     var buttonWidth: CGFloat {
         if self == .zero {
-            return (UIScreen.main.bounds.width - 4 * CalculatorDimensions.verticalSpacing) / 4 * 2
+            return (CalculatorDimensions.width - 4 * CalculatorDimensions.verticalSpacing) / 4 * 2
         }
-        return (UIScreen.main.bounds.width - 5 * CalculatorDimensions.verticalSpacing) / 4
+        return (CalculatorDimensions.width - 5 * CalculatorDimensions.verticalSpacing) / 4
     }
     
     var buttonHeight: CGFloat {
-        return (UIScreen.main.bounds.width - 5 * CalculatorDimensions.verticalSpacing) / 4
+        return (CalculatorDimensions.width - 5 * CalculatorDimensions.verticalSpacing) / 4
     }
 }
