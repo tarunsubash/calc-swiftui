@@ -60,7 +60,7 @@ enum CalculatorButton {
         case .multiply:
             return "X"
         case .divide:
-            return "/"
+            return "÷"
         case .equals:
             return "="
         case .allClear:

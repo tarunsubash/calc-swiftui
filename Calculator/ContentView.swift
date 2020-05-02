@@ -7,8 +7,14 @@
 //
 
 import SwiftUI
-
+class GlobalEnviornment: ObservableObject {
+    @Published var display = ""
+    func updateDisplay(button: CalculatorButton) {
+        display = button.title
+    }
+}
 struct ContentView: View {
+    @EnvironmentObject var env: GlobalEnviornment
     let calculatorButtons: [[CalculatorButton]] = [
         [.allClear, .negate, .percentage, .divide],
         [.seven, .eight, .nine, .multiply],
@@ -22,18 +28,12 @@ struct ContentView: View {
             VStack(spacing: CalculatorDimensions.verticalSpacing) {
                 HStack(spacing: 12) {
                     Spacer()
-                    Text("43").font(.system(size: 72)).foregroundColor(.white).padding()
+                    Text(env.display).font(.system(size: 72)).foregroundColor(.white).padding()
                 }
                 ForEach(calculatorButtons, id: \.self) {  row in
                     HStack(spacing: 12) {
                         ForEach(row, id: \.self) { button in
-                            Text(button.title)
-                                .font(.system(size: 32))
-                                .frame(width: button.buttonWidth,
-                                       height: button.buttonHeight)
-                                .foregroundColor(.white)
-                                .background(button.backgroundColor)
-                            .cornerRadius(button.buttonHeight / 2)
+                           CalculatorButtonView(button: button)
                         }
                     }
                 }
@@ -44,6 +44,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(GlobalEnviornment())
     }
 }
