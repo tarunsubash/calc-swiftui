@@ -14,23 +14,30 @@ struct ContentView: View {
                              ["1", "2", "3", "+"],
                              ["0", ".", ".", "="]
     ]
-    
+    private let verticalSpacing: CGFloat = 12
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.black.edgesIgnoringSafeArea(.all)
-            VStack {
+            VStack(spacing: verticalSpacing) {
                 ForEach(calculatorButtons, id: \.self) {  row in
-                    HStack {
+                    HStack(spacing: 12) {
                         ForEach(row, id: \.self) { button in
                             Text(button)
                                 .font(.system(size: 32))
-                                .frame(width: 80, height: 80)
+                                .frame(width: self.buttonWidth(),
+                                       height: self.buttonWidth())
                                 .foregroundColor(.white)
+                                .background(Color.yellow)
+                            .cornerRadius(self.buttonWidth()/2)
                         }
                     }
                 }
-            }
+            }.padding(.bottom)
         }
+    }
+    
+    private func buttonWidth() -> CGFloat {
+        return (UIScreen.main.bounds.width - 5 * verticalSpacing) / 4
     }
 }
 
