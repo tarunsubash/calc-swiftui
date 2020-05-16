@@ -7,38 +7,9 @@
 //
 
 import SwiftUI
-class GlobalEnviornment: ObservableObject {
-    @Published var display = "0"
-    @Published var evalExpression = ""
-    func updateDisplay(button: CalculatorButton) {
-        display = button.title
-    }
-    
-    func appendDisplay(button: CalculatorButton) {
-        display.append(button.title)
-    }
-    func updateEvalExpression(button: CalculatorButton) {
-        evalExpression.append(button.title)
-        print(evalExpression)
-    }
-    func evaluateExpression() {
-        let expression = NSExpression(format: evalExpression)
-        var result = expression.expressionValue(with: nil, context: nil) as! NSNumber
-        display = "\(result)"
-        print(result)
-    }
-    func clearDisplay() {
-        display = "0"
-    }
-    
-    func negate() {
-        var temp = (display as NSString).integerValue
-        temp = temp * (-1)
-        display = "\(temp)"
-    }
-}
+
 struct ContentView: View {
-    @EnvironmentObject var env: GlobalEnviornment
+    @EnvironmentObject var env: DisplayUtility
     let calculatorButtons: [[CalculatorButton]] = [
         [.allClear, .negate, .percentage, .divide],
         [.seven, .eight, .nine, .multiply],
@@ -68,6 +39,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(GlobalEnviornment())
+        ContentView().environmentObject(DisplayUtility())
     }
 }

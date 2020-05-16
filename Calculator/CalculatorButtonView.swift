@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CalculatorButtonView: View {
     var button: CalculatorButton
-    @EnvironmentObject var env: GlobalEnviornment
+    @EnvironmentObject var env: DisplayUtility
     var body: some View {
         Button(action: {
             switch self.button {
