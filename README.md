@@ -5,9 +5,7 @@
 The app looks like 
 
 
-![Categories](https://github.com/tarunsubash/lets-invest/blob/main/Categories.png "Categories")
-![Themes](https://github.com/tarunsubash/lets-invest/blob/main/Themes.png "Themes")
-![Trending](https://github.com/tarunsubash/lets-invest/blob/main/Trending.png "Trending")
+![AppStartup](https://github.com/tarunsubash/calc-swiftui/blob/master/Calculator-Startup.png "AppStartup")
 
 
 Thanks to **_letsbuildthatapp_** for helping through concepts of Swift UI.
